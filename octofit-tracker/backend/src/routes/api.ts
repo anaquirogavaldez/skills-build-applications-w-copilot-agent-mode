@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { User } from '../models/User';
 import { Activity } from '../models/Activity';
+import { Team } from '../models/Team';
+import { Workout } from '../models/Workout';
 
 const router = Router();
 
@@ -41,6 +43,42 @@ router.post('/activities', async (req, res) => {
     res.status(201).json(activity);
   } catch (error) {
     res.status(400).json({ message: 'Failed to create activity', error });
+  }
+});
+
+router.get('/teams', async (_req, res) => {
+  try {
+    const teams = await Team.find().sort({ createdAt: -1 });
+    res.json(teams);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch teams', error });
+  }
+});
+
+router.post('/teams', async (req, res) => {
+  try {
+    const team = await Team.create(req.body);
+    res.status(201).json(team);
+  } catch (error) {
+    res.status(400).json({ message: 'Failed to create team', error });
+  }
+});
+
+router.get('/workouts', async (_req, res) => {
+  try {
+    const workouts = await Workout.find().sort({ createdAt: -1 });
+    res.json(workouts);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch workouts', error });
+  }
+});
+
+router.post('/workouts', async (req, res) => {
+  try {
+    const workout = await Workout.create(req.body);
+    res.status(201).json(workout);
+  } catch (error) {
+    res.status(400).json({ message: 'Failed to create workout', error });
   }
 });
 
