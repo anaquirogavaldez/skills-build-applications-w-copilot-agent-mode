@@ -1,3 +1,4 @@
+
 const getApiBaseUrl = () => {
   const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim();
 
@@ -34,7 +35,11 @@ const normalizeItems = (payload) => {
   }
 
   if (payload.results && typeof payload.results === 'object') {
-    const nestedItems = payload.results.data || payload.results.items || payload.results.docs || payload.results.results;
+    const nestedItems =
+      payload.results.data ||
+      payload.results.items ||
+      payload.results.docs ||
+      payload.results.results;
 
     if (Array.isArray(nestedItems)) {
       return nestedItems;
