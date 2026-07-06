@@ -33,7 +33,7 @@ async function seedDatabase() {
 
     await Workout.create([
       { title: 'Cardio Blast', description: 'A quick endurance workout', difficulty: 'beginner', durationMinutes: 20, category: 'cardio' },
-      { title: 'Power Circuit', description: 'Strength-focused training', difficulty: 'advanced', durationMinutes: 40, category: 'strength' }
+      { title: 'Power Circuit', description: 'A high-intensity strength workout', difficulty: 'advanced', durationMinutes: 40, category: 'strength' }
     ]);
 
     console.log('Database seeding complete');
