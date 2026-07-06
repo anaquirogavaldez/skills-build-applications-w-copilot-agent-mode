@@ -5,9 +5,13 @@ import { Team } from '../models/Team';
 import { Workout } from '../models/Workout';
 
 const router = Router();
+const codespaceName = process.env.CODESPACE_NAME;
+const apiBaseUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : 'http://localhost:8000';
 
 router.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+  res.json({ status: 'ok', apiBaseUrl, port: 8000 });
 });
 
 router.get('/users', async (_req, res) => {

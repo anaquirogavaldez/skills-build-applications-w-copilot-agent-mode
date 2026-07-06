@@ -6,8 +6,12 @@ const Activity_1 = require("../models/Activity");
 const Team_1 = require("../models/Team");
 const Workout_1 = require("../models/Workout");
 const router = (0, express_1.Router)();
+const codespaceName = process.env.CODESPACE_NAME;
+const apiBaseUrl = codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev`
+    : 'http://localhost:8000';
 router.get('/health', (_req, res) => {
-    res.json({ status: 'ok' });
+    res.json({ status: 'ok', apiBaseUrl, port: 8000 });
 });
 router.get('/users', async (_req, res) => {
     try {
