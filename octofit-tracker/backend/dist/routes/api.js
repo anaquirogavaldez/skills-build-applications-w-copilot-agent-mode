@@ -85,4 +85,13 @@ router.post('/workouts', async (req, res) => {
         res.status(400).json({ message: 'Failed to create workout', error });
     }
 });
+router.get('/leaderboard', async (_req, res) => {
+    try {
+        const users = await User_1.User.find().sort({ points: -1 });
+        res.json(users);
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Failed to fetch leaderboard', error });
+    }
+});
 exports.default = router;
